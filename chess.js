@@ -64,7 +64,7 @@ const check_board = (n) => {
     }
     if (invalid) {
         report(statement);
-        return;
+        return false;
     } 
     if (! invalid) {
         statement = "Ok"
@@ -73,6 +73,7 @@ const check_board = (n) => {
         statement = "Yayyyy! You have found a solution. Congrats!";
     }
     report(statement);
+    return true;
 }
 const click_square = (row, col, n, element) => {
     let square_id = row * n + col + 1;
@@ -137,6 +138,7 @@ const makeboard = (n=1) => {
             let queen = document.createElement("div");
             square.appendChild(queen);
             queen.className = "queen";
+            queen.textContent = "♛";
 
 
             // add event listener
@@ -171,12 +173,41 @@ const makeboard = (n=1) => {
     var solvedStatus = document.createElement("div");
     boardContainer.appendChild(solvedStatus);
     solvedStatus.id = "log_solution"
-    solvedStatus.textContent = "Please click a box to start.";
+    if (n != 0) {
+        solvedStatus.textContent = "Please click a box to start.";
+    } else {
+        check_board(n);
+        solvedStatus.textContent = "You found a trivial solution!";
+    }
 
     // title
     var titleElement = document.querySelector("#title");
     titleElement.innerHTML = '';
-    titleElement.textContent = `The ${n} queen${n==1?'':'s'} problem.`
+
+    var decreaseButton = document.createElement("div");
+    decreaseButton.className = 'button';
+    decreaseButton.textContent = ' ◀️ ';
+    decreaseButton.addEventListener("click",() =>{
+        n--;
+        n = n<0? 0 : n;
+        makeboard(n);
+        return;
+    });
+    var increaseButton = document.createElement("div");
+    increaseButton.className = 'button';
+    increaseButton.textContent = ' ▶️ ';
+    increaseButton.addEventListener("click",() =>{
+        n++;
+        n = n>50? 50 : n;
+        makeboard(n);
+        return;
+    });
+    var textspan = document.createElement("span");
+    textspan.textContent =  `  The ${n} queen${n==1?'':'s'} problem.  `;
+
+    titleElement.appendChild(decreaseButton);
+    titleElement.appendChild(textspan);
+    titleElement.appendChild(increaseButton);
 }
 
 makeboard(8);
