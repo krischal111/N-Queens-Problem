@@ -30,12 +30,11 @@ const check_board = (n) => {
     }
 
     // diagonal check
-    for(let i = 0; i<n+n; ++i) {
+    for(let i = 0; i<n+n-1; ++i) {
         let d1_seen = 0;
         let d2_seen = 0;
         for(let j = 0; j <n; ++j) {
-            let row = j;
-            let col1 = i+j;
+            let col1 = i+j+1-n;
             let col2 = i-j;
             if (col1 >= 0 && col1 <n) {
                 d1_seen += board[j][col1];
