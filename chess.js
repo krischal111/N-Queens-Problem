@@ -129,7 +129,7 @@ const makeboard = (n=1) => {
             // the square
             let square = document.createElement("div");
             rowContainer.appendChild(square);
-            square.className = ((row+col)%2 === 0) ? "dark" : "light";
+            square.className = ((row+col)%2 === 1) ? "dark" : "light";
             square.classList.add("square");
             // square.textContent = 'box';
 
