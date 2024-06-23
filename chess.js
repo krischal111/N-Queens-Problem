@@ -81,9 +81,13 @@ const click_square = (row, col, n, element) => {
     board[row][col] = queenpresent;
     queen = element.querySelector(".queen");
     if (queenpresent === 0) {
-        queen.style.visibility = "hidden";
+        // queen.className = "queen";
+        // queen.classList.add("hide");
+        queen.className = "queen hide";
     } else {
-        queen.style.visibility = "visible";
+        // queen.className = "queen";
+        // queen.classList.add("show");
+        queen.className = "queen show";
     }
     check_board(n);
 };

@@ -55,6 +55,12 @@
     color:fuchsia;
     opacity: 25%;
 }
+.hide {
+    visibility: hidden;
+}
+.show {
+    visibility: visible;
+}
 
 .square {
     box-sizing: border-box;
